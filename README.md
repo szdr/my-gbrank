@@ -7,15 +7,17 @@ GBrank is gradient boosting trees based learning to rank method propoed in
 # example
 
 ## test_regression_tree.py
+
+### predicted result
 ![fig_test_regression_tree.png](fig_test_regression_tree.png)
 
-min_data_in_leaf = 1
+### min_data_in_leaf = 1
 ![rt_1.png](rt_1.png)
 
-min_data_in_leaf = 3
+### min_data_in_leaf = 3
 ![rt_3.png](rt_3.png)
 
-min_data_in_leaf = 5
+#### min_data_in_leaf = 5
 ![rt_5.png](rt_5.png)
 
 ## test_gbrank.py
