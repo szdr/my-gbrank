@@ -29,7 +29,7 @@ correct order
 3B > 3A, 3C > 3A, 3A > 3D, 3C > 3B, 3B > 3D, 3C > 3D
 
 predicted order
-1A > 1B, 1A > 1C, 1A > 1D, 1C > 1B, 1B > 1D, 1C > 1D
+1A > 1B, 1A > 1C, 1A > 1D, 1B > 1C, 1B > 1D, 1C > 1D
 2B > 2A, 2C > 2A, 2B > 2C, 2B > 2D, 2C > 2D
 3B > 3A, 3C > 3A, 3A > 3D, 3C > 3B, 3B > 3D, 3C > 3D
 ```

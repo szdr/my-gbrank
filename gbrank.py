@@ -45,13 +45,21 @@ class GBrank(object):
                 ys_target_in_qid = ys_target[qid_target == qid]
                 ys_predict_in_qid = ys_predict[qid_target == qid]
 
-                for tpl in combinations(enumerate(ys_predict_in_qid), 2):
-                    # tpl: ((ind1, ys_predict_in_qid1), (ind2, ys_predict_in_qid2))
-                    if tpl[0][1] < tpl[1][1] + self.tau:
-                        X_train_for_n_tree.append(X_target_in_qid[tpl[0][0]])
-                        ys_train_for_n_tree.append(ys_target_in_qid[tpl[0][0]] + self.tau)
-                        X_train_for_n_tree.append(X_target_in_qid[tpl[1][0]])
-                        ys_train_for_n_tree.append(ys_target_in_qid[tpl[1][0]] - self.tau)
+                for left, right in combinations(enumerate(zip(ys_target_in_qid, ys_predict_in_qid)), 2):
+                    ind_1, (ys_target_1, ys_predict_1) = left
+                    ind_2, (ys_target_2, ys_predict_2) = right
+
+                    # (ys_target_1 > ys_target_2)となるように交換
+                    if ys_target_1 < ys_target_2:
+                        ys_target_1, ys_target_2 = ys_target_2, ys_target_1
+                        ys_predict_1, ys_predict_2 = ys_predict_2, ys_predict_1
+                        ind_1, ind_2 = ind_2, ind_1
+
+                    if ys_predict_1 < ys_predict_2 + self.tau:
+                        X_train_for_n_tree.append(X_target_in_qid[ind_1])
+                        ys_train_for_n_tree.append(ys_target_in_qid[ind_1] + self.tau)
+                        X_train_for_n_tree.append(X_target_in_qid[ind_2])
+                        ys_train_for_n_tree.append(ys_target_in_qid[ind_2] - self.tau)
             X_train_for_n_tree = np.array(X_train_for_n_tree)
             ys_train_for_n_tree = np.array(ys_train_for_n_tree)
 
